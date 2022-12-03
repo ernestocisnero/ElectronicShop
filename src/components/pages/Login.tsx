@@ -1,6 +1,6 @@
 
 
-export const Login = () => {
+export const Login = (): JSX.Element => {
     return (
         <div>Login</div>
     )

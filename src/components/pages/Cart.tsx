@@ -1,6 +1,6 @@
 
 
-export const Cart = () => {
+export const Cart = (): JSX.Element => {
   return (
     <div>Cart</div>
   )

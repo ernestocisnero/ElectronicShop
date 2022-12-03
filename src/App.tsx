@@ -8,10 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Electro-Shop</h1>
-
-      <hr />
-
       <Routes>
         {
           userStatus !== 'not-authenticated' 
