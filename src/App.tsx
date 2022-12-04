@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Login, Signup } from './components/pages';
+import { AuthRouter } from './Router/AuthRouter';
 import { ShopRouter } from './Router/ShopRouter';
 
 function App() {
@@ -11,11 +11,10 @@ function App() {
       <Routes>
         {
           userStatus !== 'not-authenticated' 
-          ? <Route path='/*' element={ <ShopRouter /> }/>
-          :<Route path='/login/*' element={ <Login /> }/>
+          ? <Route path='/shop/*' element={ <ShopRouter /> }/>
+          :<Route path='/*' element={ <AuthRouter /> }/>
         }
-        <Route path='/*' element = { <Navigate to='/login'/> }/>
-        <Route path='/signup' element = { <Signup />}/>
+        <Route path='/*' element = { <Navigate to='/'/> }/>
       </Routes>
     </div>
   )
