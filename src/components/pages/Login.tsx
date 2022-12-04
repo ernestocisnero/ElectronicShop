@@ -14,14 +14,12 @@ export const Login = (): JSX.Element => {
                                 <form action="submit">
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">Email</label>
-                                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
-                                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                                        <input type="email" className="form-control" id="email" />
                                     </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="password" aria-describedby="passwordHelp" />
-                                        <div id="passwordHelp" className="form-text">All your passwords are secure with us.</div>
+                                        <input type="password" className="form-control" id="password"  />
                                     </div>
 
                                     <button className="btn btn-primary btn-sm btn-block">
