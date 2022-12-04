@@ -1,0 +1,10 @@
+.main-login-wrapper {
+    background-image: url('images/board.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.75;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}

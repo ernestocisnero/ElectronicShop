@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Login } from './components/pages';
+import { Login, Signup } from './components/pages';
 import { ShopRouter } from './Router/ShopRouter';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           :<Route path='/login/*' element={ <Login /> }/>
         }
         <Route path='/*' element = { <Navigate to='/login'/> }/>
+        <Route path='/signup' element = { <Signup />}/>
       </Routes>
     </div>
   )
