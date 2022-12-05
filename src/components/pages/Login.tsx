@@ -1,6 +1,16 @@
+import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { AppContext } from "../../context/AppContext";
 
 export const Login = (): JSX.Element => {
+
+    const { userState, dispatch } = useContext(AppContext);
+
+    useEffect(() => {
+        dispatch({ type: 'log_user' });
+    }, [])
+
+
     return (
 
         <div className="container py-5 h-100">
