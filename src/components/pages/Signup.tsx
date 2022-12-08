@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom"
+import { useForm, SubmitHandler } from "react-hook-form";
+import { IFormSignUpInput } from "../../interfaces";
+
 
 
 export const Signup = (): JSX.Element => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<IFormSignUpInput>();
+    const onSubmit: SubmitHandler<IFormSignUpInput> = (data) =>{
+        console.log(data);
+        
+    }
+
     return (
 
         <div className="container py-5 h-100">
@@ -12,33 +22,43 @@ export const Signup = (): JSX.Element => {
 
                             <h3 className="mb-5">Sign Up</h3>
 
-                            <form action="submit">
+                            <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name</label>
-                                    <input type="text" className="form-control" id="name" />
+                                    <input type="text" className={`form-control ${errors.name && "is-invalid"}`}  id="name" placeholder="John" autoComplete="on" 
+                                    {...register("name", {required: true})} />
+                                    {errors.name && <p className="invalid-feedback">Name is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="lastName" className="form-label">Last Name</label>
-                                    <input type="text" className="form-control" id="lastName" />
+                                    <input type="text" className={`form-control ${errors.lastName && "is-invalid"}`} id="lastName" placeholder="Doe" autoComplete="on"  
+                                    {...register("lastName",{required: true})} />
+                                    {errors.lastName && <p className="invalid-feedback">Last Name is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="email" />
+                                    <input type="email" className={`form-control ${errors.email && "is-invalid"}`} id="email" placeholder="youremail@email.com" autoComplete="on"
+                                    {...register("email",{required: true})} />
+                                    {errors.email && <p className="invalid-feedback">Email is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="password" />
+                                    <input type="password" className={`form-control ${errors.password && "is-invalid"}`} id="password" placeholder="********" autoComplete="on"
+                                    {...register("password", {required: true} )} />
+                                    {errors.password && <p className="invalid-feedback">Password is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="pass-confirm" className="form-label">Confirm your Password</label>
-                                    <input type="password" className="form-control" id="pass-confirm" />
+                                    <input type="password" className={`form-control ${errors.passwordConfirm && "is-invalid"}`} id="pass-confirm" placeholder="********" autoComplete="on"
+                                    {...register("passwordConfirm", {required: true})} />
+                                    {errors.passwordConfirm && <p className="invalid-feedback">Confirm your password</p>}
                                 </div>
 
-                                <button className="btn btn-primary btn-sm btn-block">
+                                <button className="btn btn-primary btn-sm btn-block" type="submit">
                                     Create account
                                 </button>
 
@@ -51,7 +71,6 @@ export const Signup = (): JSX.Element => {
                 </div>
             </div>
         </div>
-
 
     )
 }

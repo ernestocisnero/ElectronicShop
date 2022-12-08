@@ -1,15 +1,15 @@
-import { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { AppContext } from "../../context/AppContext";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { IFormLoginInput } from "../../interfaces";
+
 
 export const Login = (): JSX.Element => {
 
-    const { userState, dispatch } = useContext(AppContext);
-
-    useEffect(() => {
-        dispatch({ type: 'log_user' });
-    }, [])
-
+    const { register, handleSubmit, formState: { errors } } = useForm<IFormLoginInput>();
+    const onSubmit: SubmitHandler<IFormLoginInput> = (data) =>{
+        console.log(data);
+        
+    }
 
     return (
 
@@ -21,18 +21,20 @@ export const Login = (): JSX.Element => {
 
                             <h3 className="mb-5">Login</h3>
 
-                            <form action="submit">
+                            <form onSubmit={ handleSubmit(onSubmit) }>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="email" />
+                                    <input type="email" className={`form-control ${errors.email && "is-invalid"}`} id="email" {...register("email",{required: true} )} autoComplete="on"/>
+                                    {errors.email && <p className="invalid-feedback">Email is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="password" />
+                                    <input type="password" className={`form-control ${errors.password && "is-invalid"}`} id="password" {...register("password",{required: true} )} autoComplete="on"/>
+                                    {errors.password && <p className="invalid-feedback">Password is required</p>}
                                 </div>
 
-                                <button className="btn btn-primary btn-sm btn-block">
+                                <button className="btn btn-primary btn-sm btn-block" type="submit">
                                     Login
                                 </button>
                                 <hr />

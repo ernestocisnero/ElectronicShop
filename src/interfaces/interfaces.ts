@@ -20,8 +20,8 @@ export interface IUserState {
 
 //Firebase
 
-export interface IFirebaseConfig{
-    apiKey:string,
+export interface IFirebaseConfig {
+    apiKey: string,
     authDomain: string,
     projectId: string,
     storageBucket: string,
@@ -29,13 +29,28 @@ export interface IFirebaseConfig{
     appId: string
 }
 
-export interface ISignUpResponse{
+export interface ISignUpResponse {
     res: {
         ok: boolean
     },
 
-    error?:{
+    error?: {
         errorCode: number,
         errorMessage: string
     }
+}
+
+// Forms
+
+export interface IFormSignUpInput {
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+    passwordConfirm: string;
+}
+
+export interface IFormLoginInput {
+    email: string;
+    password: string;
 }
