@@ -1,21 +1,32 @@
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormSignUpInput } from "../../interfaces";
-import { validatePasswordFormat } from "../../helpers/validatePasswordFormat";
+import { validatePasswordFormat, matchPassword } from "../../helpers/";
+import { useState } from "react";
+import { ProgressBarPassword } from "../UI/ProgressBarPassword";
+
+
 
 
 
 export const Signup = (): JSX.Element => {
 
+    const [passwStrongness, setpasswStrongness] = useState<number>(0);
+    const [passwordMatch, setpasswordMatch] = useState<boolean>(true);
+
     const { register, handleSubmit, formState: { errors } } = useForm<IFormSignUpInput>();
 
-    const onSubmit: SubmitHandler<IFormSignUpInput> = (data) =>{
-    
-        validatePasswordFormat(data.password, data.passwordConfirm) ? console.log("Match") :console.log("No match")
-        
+    const onSubmit: SubmitHandler<IFormSignUpInput> = (data) => {
+        const isPasswordMatch = matchPassword(data.password, data.passwordConfirm);
+        setpasswordMatch(isPasswordMatch);
     }
 
 
+    const handleBlur = (event: React.FormEvent<HTMLInputElement>)=>{
+        const strongness = validatePasswordFormat(event);
+        setpasswStrongness(strongness);
+    }
+    
     return (
 
         <div className="container py-5 h-100">
@@ -29,37 +40,41 @@ export const Signup = (): JSX.Element => {
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label">Name</label>
-                                    <input type="text" className={`form-control ${errors.name && "is-invalid"}`}  id="name" placeholder="John" autoComplete="on" 
-                                    {...register("name", {required: true})} />
+                                    <input type="text" className={`form-control ${errors.name && "is-invalid"}`} id="name" placeholder="John" autoComplete="on"
+                                        {...register("name", { required: true })} />
                                     {errors.name && <p className="invalid-feedback">Name is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="lastName" className="form-label">Last Name</label>
-                                    <input type="text" className={`form-control ${errors.lastName && "is-invalid"}`} id="lastName" placeholder="Doe" autoComplete="on"  
-                                    {...register("lastName",{required: true})} />
+                                    <input type="text" className={`form-control ${errors.lastName && "is-invalid"}`} id="lastName" placeholder="Doe" autoComplete="on"
+                                        {...register("lastName", { required: true })} />
                                     {errors.lastName && <p className="invalid-feedback">Last Name is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className={`form-control ${errors.email && "is-invalid"}`} id="email" placeholder="youremail@email.com" autoComplete="on"
-                                    {...register("email",{required: true})} />
+                                        {...register("email", { required: true })} 
+                                        />
                                     {errors.email && <p className="invalid-feedback">Email is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className={`form-control ${errors.password && "is-invalid"}`} id="password" placeholder="********" autoComplete="on"
-                                    {...register("password", {required: true} )} />
+                                        {...register("password", { required: true })} 
+                                        onBlur = { handleBlur }/>
                                     {errors.password && <p className="invalid-feedback">Password is required</p>}
+                                    {(passwStrongness > 0) && <ProgressBarPassword passwStrongness={passwStrongness}/> }
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="pass-confirm" className="form-label">Confirm your Password</label>
                                     <input type="password" className={`form-control ${errors.passwordConfirm && "is-invalid"}`} id="pass-confirm" placeholder="********" autoComplete="on"
-                                    {...register("passwordConfirm", {required: true})} />
+                                        {...register("passwordConfirm", { required: true })} />
                                     {errors.passwordConfirm && <p className="invalid-feedback">Confirm your password</p>}
+                                    { !passwordMatch && <p>Passwords don't match</p>}
                                 </div>
 
                                 <button className="btn btn-primary btn-sm btn-block" type="submit">
