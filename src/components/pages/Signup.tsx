@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormSignUpInput } from "../../interfaces";
+import { validatePasswordFormat } from "../../helpers/validatePasswordFormat";
 
 
 
 export const Signup = (): JSX.Element => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<IFormSignUpInput>();
+
     const onSubmit: SubmitHandler<IFormSignUpInput> = (data) =>{
-        console.log(data);
+    
+        validatePasswordFormat(data.password, data.passwordConfirm) ? console.log("Match") :console.log("No match")
         
     }
+
 
     return (
 
