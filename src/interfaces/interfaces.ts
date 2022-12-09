@@ -12,7 +12,9 @@ export interface IProductCart {
 
 
 export interface IUserState {
-    userId: string,
+    uid: string | null,
+    displayName: string | null,
+    email: string | null,
     isLogin: boolean,
     userCart: IProductCart[]
 }
@@ -27,17 +29,6 @@ export interface IFirebaseConfig {
     storageBucket: string,
     messagingSenderId: string,
     appId: string
-}
-
-export interface ISignUpResponse {
-    res: {
-        ok: boolean
-    },
-
-    error?: {
-        errorCode: number,
-        errorMessage: string
-    }
 }
 
 // Forms

@@ -4,6 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormSignUpInput } from "../../interfaces";
 import { validatePasswordFormat, matchPassword } from "../../helpers/";
 import { ProgressBarPassword } from "../UI/ProgressBarPassword";
+import { createUserEmailPassword } from '../../firebase/firebaseAuthMethods';
 
 
 
@@ -28,13 +29,12 @@ export const Signup = (): JSX.Element => {
         
     }, [isSubmitSuccessful])
     
-    const onSubmit: SubmitHandler<IFormSignUpInput> = (data) => {
+    const onSubmit: SubmitHandler<IFormSignUpInput> = async (data) => {
         
         const isPasswordMatch = matchPassword(data.password, data.passwordConfirm);
 
         if (isPasswordMatch) {
-            console.log(data);
-
+            await createUserEmailPassword(data.email, data.password);
 
             setpasswordMatch(true);
             setpasswStrongness(0);

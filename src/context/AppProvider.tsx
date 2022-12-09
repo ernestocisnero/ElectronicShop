@@ -4,19 +4,21 @@ import { AppContext } from './AppContext';
 import { appReducer } from './appReducer';
 
 const INITIAL_STATE: IUserState = {
-    userId: '',
+    uid: null,
+    displayName: null,
+    email: null,
     isLogin: false,
     userCart: []
-} 
+}
 
 
-export const AppProvider = ( { children }: IPropsProvider ) => {
+export const AppProvider = ({ children }: IPropsProvider) => {
 
     const [userState, dispatch] = useReducer(appReducer, INITIAL_STATE);
 
     return (
-        <AppContext.Provider value={ {userState, dispatch} }>
-            { children }
+        <AppContext.Provider value={{ userState, dispatch }}>
+            {children}
         </AppContext.Provider>
     )
 }
