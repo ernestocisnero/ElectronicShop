@@ -7,7 +7,6 @@ export interface IPropsProvider {
 export interface IProductCart {
     productId: string,
     quantity?: number,
-
 }
 
 
@@ -15,8 +14,8 @@ export interface IUserState {
     uid: string | null,
     displayName: string | null,
     email: string | null,
-    isLogin: boolean,
-    userCart: IProductCart[]
+    isLoggged: boolean,
+    userCart?: IProductCart[]
 }
 
 

@@ -1,31 +1,43 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import { auth } from "./configFirebase";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { IUserState } from "../interfaces";
+
 
 
 // Create user with email and password
-export const createUserEmailPassword = async ( email: string, password: string ): Promise<void>=>{
+export const createUserEmailPassword = async ( email: string, password: string ): Promise<IUserState>=>{
 
     try {
         const {user} = await createUserWithEmailAndPassword(auth, email, password);
-
         
-            const res = {
-                ok: true,
+
+        if (user){
+            return {
+                isLoggged: true,
                 uid: user.uid,
                 displayName: user.displayName,
                 email: user.email
             }
-        
-
-    } catch (error) {
-        console.log(error);
-        
-            const res = {
-                ok: false,
+        }else{
+            return {
+                isLoggged: false,
                 uid: null,
                 displayName: null,
                 email: null
             }
+        }
+}
+catch (error) {
+        console.log(error);
+        
+        return {
+            isLoggged: false,
+            uid: null,
+            displayName: null,
+            email: null
+        }
         
     }
 

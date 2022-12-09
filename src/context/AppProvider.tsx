@@ -7,7 +7,7 @@ const INITIAL_STATE: IUserState = {
     uid: null,
     displayName: null,
     email: null,
-    isLogin: false,
+    isLoggged: false,
     userCart: []
 }
 

@@ -1,7 +1,7 @@
 import { IProductCart, IUserState } from "../interfaces";
 
 export type ActionType =
-    | { type: 'log_user' }
+    | { type: 'log_user', payload: IUserState }
     | { type: 'addToCart', payload: IProductCart }
     | { type: 'removeFromCart', payload: IProductCart }
 
@@ -11,10 +11,13 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
     switch (action.type) {
 
         case 'log_user':
-            console.log('Log User action triggered');
-            
+            state.displayName = action.payload.displayName;
+            state.email = action.payload.email;
+            state.isLoggged = action.payload.isLoggged;
+            state.uid = action.payload.uid;
             return {
                 ...state,
+                
             }
 
         case 'addToCart':

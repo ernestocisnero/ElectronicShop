@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormSignUpInput } from "../../interfaces";
 import { validatePasswordFormat, matchPassword } from "../../helpers/";
 import { ProgressBarPassword } from "../UI/ProgressBarPassword";
 import { createUserEmailPassword } from '../../firebase/firebaseAuthMethods';
+import { AppContext } from '../../context/AppContext';
 
 
 
@@ -14,6 +15,8 @@ export const Signup = (): JSX.Element => {
 
     const [passwStrongness, setpasswStrongness] = useState<number>(0);
     const [passwordMatch, setpasswordMatch] = useState<boolean>(true);
+    const { dispatch } = useContext(AppContext);
+
     const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm<IFormSignUpInput>();
 
     useEffect(() => {
@@ -34,8 +37,9 @@ export const Signup = (): JSX.Element => {
         const isPasswordMatch = matchPassword(data.password, data.passwordConfirm);
 
         if (isPasswordMatch) {
-            await createUserEmailPassword(data.email, data.password);
+            const user = await createUserEmailPassword(data.email, data.password);
 
+            dispatch( { type:'log_user', payload: user } );
             setpasswordMatch(true);
             setpasswStrongness(0);
         }
