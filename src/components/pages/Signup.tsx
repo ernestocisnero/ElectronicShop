@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormSignUpInput } from "../../interfaces";
 import { validatePasswordFormat, matchPassword } from "../../helpers/";
-import { useState } from "react";
 import { ProgressBarPassword } from "../UI/ProgressBarPassword";
 
 
@@ -13,20 +13,43 @@ export const Signup = (): JSX.Element => {
 
     const [passwStrongness, setpasswStrongness] = useState<number>(0);
     const [passwordMatch, setpasswordMatch] = useState<boolean>(true);
+    const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm<IFormSignUpInput>();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormSignUpInput>();
-
+    useEffect(() => {
+        if(isSubmitSuccessful){
+            reset({
+                name: '',
+                lastName:'',
+                email: '',
+                password: '',
+                passwordConfirm: ''
+            });
+        }
+        
+    }, [isSubmitSuccessful])
+    
     const onSubmit: SubmitHandler<IFormSignUpInput> = (data) => {
+        
         const isPasswordMatch = matchPassword(data.password, data.passwordConfirm);
-        setpasswordMatch(isPasswordMatch);
+
+        if (isPasswordMatch) {
+            console.log(data);
+
+
+            setpasswordMatch(true);
+            setpasswStrongness(0);
+        }
+        else {
+            setpasswordMatch(isPasswordMatch);
+        }
     }
 
 
-    const handleBlur = (event: React.FormEvent<HTMLInputElement>)=>{
+    const handleBlur = (event: React.FormEvent<HTMLInputElement>) => {
         const strongness = validatePasswordFormat(event);
         setpasswStrongness(strongness);
     }
-    
+
     return (
 
         <div className="container py-5 h-100">
@@ -55,18 +78,18 @@ export const Signup = (): JSX.Element => {
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className={`form-control ${errors.email && "is-invalid"}`} id="email" placeholder="youremail@email.com" autoComplete="on"
-                                        {...register("email", { required: true })} 
-                                        />
+                                        {...register("email", { required: true })}
+                                    />
                                     {errors.email && <p className="invalid-feedback">Email is required</p>}
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className={`form-control ${errors.password && "is-invalid"}`} id="password" placeholder="********" autoComplete="on"
-                                        {...register("password", { required: true })} 
-                                        onBlur = { handleBlur }/>
+                                        {...register("password", { required: true })}
+                                        onBlur={handleBlur} />
                                     {errors.password && <p className="invalid-feedback">Password is required</p>}
-                                    {(passwStrongness > 0) && <ProgressBarPassword passwStrongness={passwStrongness}/> }
+                                    {(passwStrongness > 0) && <ProgressBarPassword passwStrongness={passwStrongness} />}
                                 </div>
 
                                 <div className="mb-3">
@@ -74,7 +97,7 @@ export const Signup = (): JSX.Element => {
                                     <input type="password" className={`form-control ${errors.passwordConfirm && "is-invalid"}`} id="pass-confirm" placeholder="********" autoComplete="on"
                                         {...register("passwordConfirm", { required: true })} />
                                     {errors.passwordConfirm && <p className="invalid-feedback">Confirm your password</p>}
-                                    { !passwordMatch && <p>Passwords don't match</p>}
+                                    {!passwordMatch && <p className="text-danger">Passwords don't match</p>}
                                 </div>
 
                                 <button className="btn btn-primary btn-sm btn-block" type="submit">
