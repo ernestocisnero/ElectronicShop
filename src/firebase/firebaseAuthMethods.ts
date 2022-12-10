@@ -1,19 +1,19 @@
 
 import { auth } from "./configFirebase";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { IUserState } from "../interfaces";
 
 
 
 // Create user with email and password
-export const createUserEmailPassword = async ( email: string, password: string ): Promise<IUserState>=>{
+export const createUserEmailPassword = async ( email: string, password: string, name: string ): Promise<IUserState>=>{
 
     try {
         const {user} = await createUserWithEmailAndPassword(auth, email, password);
-        
 
         if (user){
+            await updateProfile(user, { displayName: `${name}` })
             return {
                 isLoggged: true,
                 uid: user.uid,
@@ -30,8 +30,7 @@ export const createUserEmailPassword = async ( email: string, password: string )
         }
 }
 catch (error) {
-        console.log(error);
-        
+        console.error(error);
         return {
             isLoggged: false,
             uid: null,

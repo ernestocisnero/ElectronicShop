@@ -37,7 +37,7 @@ export const Signup = (): JSX.Element => {
         const isPasswordMatch = matchPassword(data.password, data.passwordConfirm);
 
         if (isPasswordMatch) {
-            const user = await createUserEmailPassword(data.email, data.password);
+            const user = await createUserEmailPassword(data.email, data.password, data.name);
 
             dispatch( { type:'log_user', payload: user } );
             setpasswordMatch(true);
