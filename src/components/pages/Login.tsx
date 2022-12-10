@@ -1,13 +1,31 @@
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IFormLoginInput } from "../../interfaces";
+import { logInUserEmailPassword } from "../../firebase";
+import { AppContext } from "../../context/AppContext";
 
 
 export const Login = (): JSX.Element => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormLoginInput>();
-    const onSubmit: SubmitHandler<IFormLoginInput> = (data) =>{
-        console.log(data);
+const { dispatch } = useContext(AppContext);
+    const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm<IFormLoginInput>();
+
+    useEffect(() => {
+        if(isSubmitSuccessful){
+            reset({
+                email: '',
+                password: '',
+            });
+        }
+        
+    }, [isSubmitSuccessful])
+
+
+    const onSubmit: SubmitHandler<IFormLoginInput> = async (data) =>{
+
+        const user = await logInUserEmailPassword( data.email, data.password );
+        dispatch({ type: "log_user", payload: user });
         
     }
 

@@ -8,9 +8,6 @@ import { createUserEmailPassword } from '../../firebase/firebaseAuthMethods';
 import { AppContext } from '../../context/AppContext';
 
 
-
-
-
 export const Signup = (): JSX.Element => {
 
     const [passwStrongness, setpasswStrongness] = useState<number>(0);
