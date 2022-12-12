@@ -1,7 +1,10 @@
 
-import { auth, googleProvider } from "./configFirebase";
+import { auth, googleProvider, twitterProvider } from "./configFirebase";
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile,
+    signInWithPopup
+} from "firebase/auth";
 import { IUserState } from "../interfaces";
 
 
@@ -80,7 +83,6 @@ export const googleSignIn = async (): Promise<IUserState> => {
 
     try {
         const { user } = await signInWithPopup(auth, googleProvider);
-
         if (user) {
 
             return {
@@ -105,4 +107,37 @@ export const googleSignIn = async (): Promise<IUserState> => {
             email: null
         }
     }
+}
+
+export const twitterSignIn = async (): Promise<IUserState> => {
+
+    try {
+        const { user } = await signInWithPopup(auth, twitterProvider);
+
+        if (user) {
+
+            return {
+                isLoggged: true,
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email
+            }
+        } else {
+            return {
+                isLoggged: false,
+                uid: null,
+                displayName: null,
+                email: null
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        return {
+            isLoggged: false,
+            uid: null,
+            displayName: null,
+            email: null
+        }
+    }
+
 }

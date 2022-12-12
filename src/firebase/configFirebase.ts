@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, TwitterAuthProvider } from "firebase/auth";
 
 import { IFirebaseConfig } from "../interfaces";
 
@@ -19,3 +19,4 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const googleProvider = new GoogleAuthProvider();
+export const twitterProvider = new TwitterAuthProvider();
