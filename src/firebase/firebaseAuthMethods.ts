@@ -1,18 +1,18 @@
 
-import { auth } from "./configFirebase";
+import { auth, googleProvider } from "./configFirebase";
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { IUserState } from "../interfaces";
 
 
 
 // Create user with email and password
-export const createUserEmailPassword = async ( email: string, password: string, name: string ): Promise<IUserState>=>{
+export const createUserEmailPassword = async (email: string, password: string, name: string): Promise<IUserState> => {
 
     try {
-        const {user} = await createUserWithEmailAndPassword(auth, email, password);
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
-        if (user){
+        if (user) {
             await updateProfile(user, { displayName: `${name}` })
             return {
                 isLoggged: true,
@@ -20,7 +20,7 @@ export const createUserEmailPassword = async ( email: string, password: string, 
                 displayName: user.displayName,
                 email: user.email
             }
-        }else{
+        } else {
             return {
                 isLoggged: false,
                 uid: null,
@@ -28,8 +28,8 @@ export const createUserEmailPassword = async ( email: string, password: string, 
                 email: null
             }
         }
-}
-catch (error) {
+    }
+    catch (error) {
         console.error(error);
         return {
             isLoggged: false,
@@ -37,17 +37,17 @@ catch (error) {
             displayName: null,
             email: null
         }
-        
+
     }
 }
 
 
-export const logInUserEmailPassword = async (email: string, password: string): Promise<IUserState>=>{
+export const logInUserEmailPassword = async (email: string, password: string): Promise<IUserState> => {
 
     try {
         const { user } = await signInWithEmailAndPassword(auth, email, password);
-        
-        if (user){
+
+        if (user) {
 
             return {
                 isLoggged: true,
@@ -55,7 +55,7 @@ export const logInUserEmailPassword = async (email: string, password: string): P
                 displayName: user.displayName,
                 email: user.email
             }
-        }else{
+        } else {
             return {
                 isLoggged: false,
                 uid: null,
@@ -73,5 +73,36 @@ export const logInUserEmailPassword = async (email: string, password: string): P
         }
 
     }
-    
+
+}
+
+export const googleSignIn = async (): Promise<IUserState> => {
+
+    try {
+        const { user } = await signInWithPopup(auth, googleProvider);
+
+        if (user) {
+
+            return {
+                isLoggged: true,
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email
+            }
+        } else {
+            return {
+                isLoggged: false,
+                uid: null,
+                displayName: null,
+                email: null
+            }
+        }
+    } catch (error) {
+        return {
+            isLoggged: false,
+            uid: null,
+            displayName: null,
+            email: null
+        }
+    }
 }
