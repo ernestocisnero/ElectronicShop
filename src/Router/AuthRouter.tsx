@@ -2,7 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { Login, PageNotFound, Signup } from '../components/pages';
 
 
+
 export const AuthRouter = (): JSX.Element => {
+
     return (
         <div className="main-login-wrapper">
             <Routes>
