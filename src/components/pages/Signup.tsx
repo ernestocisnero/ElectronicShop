@@ -106,7 +106,7 @@ export const Signup = (): JSX.Element => {
                                 </button>
 
                                 <hr />
-                                <h6 className="mt-4">Do you have an account? <Link className="text-info" to={'/'}>Login</Link></h6>
+                                <h6 className="mt-4">Do you have an account? <Link className="text-info" to={'/auth'}>Login</Link></h6>
                             </form>
 
                         </div>

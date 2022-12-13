@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Login, Signup } from '../components/pages';
+import { Login, PageNotFound, Signup } from '../components/pages';
 
 
 export const AuthRouter = (): JSX.Element => {
@@ -7,7 +7,8 @@ export const AuthRouter = (): JSX.Element => {
         <div className="main-login-wrapper">
             <Routes>
                 <Route path='/' element={<Login />} />
-                <Route path='/signup' element={<Signup />} />
+                <Route path='/signup/' element={<Signup />} />
+                <Route path='/*' element={<PageNotFound />} />
             </Routes>
         </div>
     )
