@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
-import { Cart, PageNotFound, Payments, Products } from '../components/pages';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Cart, Payments, Products } from '../components/pages';
 
 
 export const ShopRouter = (): JSX.Element => {
@@ -10,7 +10,7 @@ export const ShopRouter = (): JSX.Element => {
                 <Route path='/' element={<Products />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/payments' element={<Payments />} />
-                <Route path='/*' element={<PageNotFound />} />
+                <Route path='/*' element={<Navigate to="/" />} />
             </Routes>
         </>
     )

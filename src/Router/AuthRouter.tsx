@@ -1,16 +1,17 @@
-import { Routes, Route } from 'react-router-dom';
-import { Login, PageNotFound, Signup } from '../components/pages';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Login, Signup } from '../components/pages';
 
 
 
 export const AuthRouter = (): JSX.Element => {
 
+    //main-login-wrapper
     return (
         <div className="main-login-wrapper">
             <Routes>
                 <Route path='/' element={<Login />} />
-                <Route path='/signup/' element={<Signup />} />
-                <Route path='/*' element={<PageNotFound />} />
+                <Route path='signup' element={<Signup />} />
+                <Route path='/*' element={<Navigate to='/auth' />} />
             </Routes>
         </div>
     )

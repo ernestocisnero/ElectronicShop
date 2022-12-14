@@ -87,7 +87,7 @@ export const Login = (): JSX.Element => {
                                     </button>
                                 </div>
                                 <hr />
-                                <h6 className="mt-4">Don't have an account? <Link className="text-info" to={'/auth/signup'}>Sign Up</Link></h6>
+                                <h6 className="mt-4">Don't have an account? <Link className="text-info" to={'/auth/signup/'}>Sign Up</Link></h6>
                             </form>
 
                         </div>

@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
+import { AppContext } from '../../context/AppContext';
 import { IFormSignUpInput } from "../../interfaces";
 import { validatePasswordFormat, matchPassword } from "../../helpers/";
 import { ProgressBarPassword } from "../UI/ProgressBarPassword";
 import { createUserEmailPassword } from '../../firebase/firebaseAuthMethods';
-import { AppContext } from '../../context/AppContext';
 
 
 export const Signup = (): JSX.Element => {
