@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { firestoreDB } from '../../firebase/firestore/firestoreDB';
 
 export const Products = (): JSX.Element => {
+
+    useEffect(() => {
+        firestoreDB();
+    }, [])
+    
     return (
         <div>
 

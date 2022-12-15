@@ -17,11 +17,11 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
             state.uid = action.payload.uid;
             return {
                 ...state,
-                
             }
 
         case 'addToCart':
             console.log('Add to cart action triggered');
+            // state.userCart = action.payload
             return {
                 ...state,
             }
