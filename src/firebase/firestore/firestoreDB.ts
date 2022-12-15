@@ -24,7 +24,12 @@ export const firestoreDB = async () => {
     const querySnapshot = await getDoc(doc(firestoreCartDB, "user_carts", "userfdkfiklonvb8676482"));
 
     const data = querySnapshot.data();
-    console.log(data);
+    data?.cart_items.map( (item: any) =>{
+        console.log(item);
+        console.log("Product ID",item.productID, "Count", item.count);
+        
+        
+    } )
 
     
     
