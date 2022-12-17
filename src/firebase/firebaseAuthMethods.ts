@@ -3,7 +3,8 @@ import { auth, googleProvider, twitterProvider } from "./configFirebase";
 
 import {
     createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile,
-    signInWithPopup
+    signInWithPopup,
+    signOut
 } from "firebase/auth";
 import { IUserState } from "../interfaces";
 import { readFirestoreDB } from "./firestore/readFirestoreDB";
@@ -150,5 +151,31 @@ export const twitterSignIn = async (): Promise<IUserState> => {
         }
     }
 
+}
+
+export const signOutUser = async (): Promise<IUserState> =>{
+
+    try {
+        await signOut(auth);
+
+        return {
+            isLoggged: false,
+            uid: null,
+            displayName: null,
+            email: null,
+            userCart: []
+        }
+        
+    } catch (error) {
+        console.log(error);
+        
+        return {
+            isLoggged: false,
+            uid: null,
+            displayName: null,
+            email: null,
+            userCart: []
+        }
+    }
 }
 
