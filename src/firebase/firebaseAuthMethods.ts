@@ -6,6 +6,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { IUserState } from "../interfaces";
+import { readFirestoreDB } from "./firestore/readFirestoreDB";
 
 
 
@@ -14,6 +15,7 @@ export const createUserEmailPassword = async (email: string, password: string, n
 
     try {
         const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        const user_cart = await  readFirestoreDB(`${user.uid}`);
 
         if (user) {
             await updateProfile(user, { displayName: `${name}` })
@@ -21,7 +23,8 @@ export const createUserEmailPassword = async (email: string, password: string, n
                 isLoggged: true,
                 uid: user.uid,
                 displayName: user.displayName,
-                email: user.email
+                email: user.email,
+                userCart: user_cart
             }
         } else {
             return {
@@ -49,6 +52,7 @@ export const logInUserEmailPassword = async (email: string, password: string): P
 
     try {
         const { user } = await signInWithEmailAndPassword(auth, email, password);
+        const user_cart = await  readFirestoreDB(`${user.uid}`);
 
         if (user) {
 
@@ -56,7 +60,8 @@ export const logInUserEmailPassword = async (email: string, password: string): P
                 isLoggged: true,
                 uid: user.uid,
                 displayName: user.displayName,
-                email: user.email
+                email: user.email,
+                userCart: user_cart
             }
         } else {
             return {
@@ -83,13 +88,16 @@ export const googleSignIn = async (): Promise<IUserState> => {
 
     try {
         const { user } = await signInWithPopup(auth, googleProvider);
+        const user_cart = await  readFirestoreDB(`${user.uid}`);
+
         if (user) {
 
             return {
                 isLoggged: true,
                 uid: user.uid,
                 displayName: user.displayName,
-                email: user.email
+                email: user.email,
+                userCart: user_cart
             }
         } else {
             return {
@@ -113,6 +121,7 @@ export const twitterSignIn = async (): Promise<IUserState> => {
 
     try {
         const { user } = await signInWithPopup(auth, twitterProvider);
+        const user_cart = await  readFirestoreDB(`${user.uid}`);
 
         if (user) {
 
@@ -120,7 +129,8 @@ export const twitterSignIn = async (): Promise<IUserState> => {
                 isLoggged: true,
                 uid: user.uid,
                 displayName: user.displayName,
-                email: user.email
+                email: user.email,
+                userCart: user_cart
             }
         } else {
             return {

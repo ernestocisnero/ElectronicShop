@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { writeFirestoreDB } from '../../firebase/firestore/writeFirestoreDB';
 
 export const Products = (): JSX.Element => {
-
-    useEffect(() => {
-        writeFirestoreDB();
-    }, [])
     
     return (
         <div>

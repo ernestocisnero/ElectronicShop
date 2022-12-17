@@ -6,7 +6,7 @@ export interface IPropsProvider {
 
 export interface IProductCart {
     productID: string,
-    count: number,
+    count: number | null,
 }
 
 
