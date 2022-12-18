@@ -1,7 +1,15 @@
+import { Navbar } from "./Navbar"
 
+type propType = {
+    children: JSX.Element[] | JSX.Element
+}
 
-export const LayoutWrapper = (): JSX.Element => {
+export const LayoutWrapper = ( {children}: propType ): JSX.Element => {
     return (
-        <div>LayoutWrapper</div>
+        <>
+            <Navbar />
+            { children }
+            <footer>This is the footer</footer>
+        </>
     )
 }

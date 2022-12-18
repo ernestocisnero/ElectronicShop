@@ -5,7 +5,6 @@ import { Login, Signup } from '../components/pages';
 
 export const AuthRouter = (): JSX.Element => {
 
-    //main-login-wrapper
     return (
         <div className="main-login-wrapper">
             <Routes>
