@@ -5,3 +5,5 @@ export * from './Products';
 export * from './PageNotFound';
 export * from './Signup';
 export * from './UserAccount';
+export * from './AboutUs';
+export * from './Learn';

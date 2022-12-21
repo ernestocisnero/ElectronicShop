@@ -25,7 +25,8 @@
     color: #013D29 !important;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover, .navbar-search-btn:hover{
     background-color: #013D29 !important;
     color: #fff;
 }
+
