@@ -1,3 +1,7 @@
+#root{
+    font-family: 'Martian Mono', monospace;
+}
+
 .main-login-wrapper {
     background-image: url('images/board.png');
     background-size: cover;
@@ -9,6 +13,19 @@
     -o-background-size: cover;
 }
 
-.search-btn{
-    height: 35px;
+.nav-link{
+    color: black !important; 
+}
+
+.nav-link:hover{
+    color:  #013D29 !important;
+}
+
+.navbar-brand{
+    color: #013D29 !important;
+}
+
+.dropdown-item:hover{
+    background-color: #013D29 !important;
+    color: #fff;
 }
