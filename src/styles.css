@@ -1,4 +1,4 @@
-#root{
+#root {
     font-family: 'Martian Mono', monospace;
 }
 
@@ -13,21 +13,85 @@
     -o-background-size: cover;
 }
 
-.nav-link{
-    color: black !important; 
+/* NAVBAR */
+.nav-link {
+    color: black !important;
+    font-size: medium;
 }
 
-.nav-link:hover{
-    color:  #013D29 !important;
-}
-
-.navbar-brand{
+.nav-link:hover {
     color: #013D29 !important;
 }
 
-.dropdown-item:hover, .navbar-search-btn:hover{
+.navbar-brand {
+    color: #013D29 !important;
+}
+
+.dropdown-item:hover,
+.navbar-search-btn:hover {
     background-color: #013D29 !important;
     color: #fff;
 }
 
+/* ACCOUNT */
 
+.user_account {
+    width: 60vw;
+    height: 60vh;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 1px solid rgb(240, 234, 234);
+    box-shadow: 2px 2px 0.8 #fff;
+    overflow: hidden;
+}
+
+.background {
+    height: 30%;
+    background: rgb(34, 193, 195);
+    background: linear-gradient(251deg, rgba(34, 193, 195, 1) 0%, rgba(1, 61, 41, 1) 30%);
+}
+
+.profile-image{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    outline-style: solid;
+    outline-color: #fff;
+    outline-width: 3px;
+    position: relative;
+    top: -50px;
+    left: 30px;
+    overflow: hidden;
+}
+
+.user-profile-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+
+@media screen and (max-width: 990px) {
+    .profile-image{
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .profile-image{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile-image{
+        width: 85px;
+        height: 85px;
+    }
+
+    .email{
+        font-size: smaller;
+    }
+}

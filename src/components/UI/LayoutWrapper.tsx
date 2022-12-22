@@ -9,7 +9,6 @@ export const LayoutWrapper = ( {children}: propType ): JSX.Element => {
         <>
             <Navbar />
             { children }
-            <footer>This is the footer</footer>
         </>
     )
 }
