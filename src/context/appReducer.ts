@@ -16,6 +16,7 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
             state.email = action.payload.email;
             state.isLoggged = action.payload.isLoggged;
             state.uid = action.payload.uid;
+            state.userPhotoURL = action.payload.userPhotoURL
             state.userCart = action.payload.userCart
             return {
                 ...state,

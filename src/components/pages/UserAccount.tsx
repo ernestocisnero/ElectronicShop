@@ -16,7 +16,7 @@ export const UserAccount = (): JSX.Element => {
             <div className="user_account mt-5">
                 <div className="background"></div>
                 <div className="profile-image">
-                    <img className="user-profile-image" src="images/board.png" alt="This is the user profile image" />
+                    <img className="user-profile-image" src={ userState.userPhotoURL ? `${userState.userPhotoURL}` : "/images/profile.png" } alt="This is the user profile image" />
                 </div>
                 <div className="user-data">
                     <div className="card-body">
@@ -29,7 +29,7 @@ export const UserAccount = (): JSX.Element => {
                             </svg>
                             { userState.email }
                         </p>
-                        <button className="btn" style={{ backgroundColor: "#013D29", color: "#fff" }} onClick={handleSignOut}>Sign Out</button>
+                        <button className="btn mt-5 rounded" style={{ backgroundColor: "#013D29", color: "#fff" }} onClick={handleSignOut}>Sign Out</button>
                     </div>
                 </div>
             </div>

@@ -98,6 +98,7 @@ export const googleSignIn = async (): Promise<IUserState> => {
                 uid: user.uid,
                 displayName: user.displayName,
                 email: user.email,
+                userPhotoURL: user.photoURL,
                 userCart: user_cart
             }
         } else {

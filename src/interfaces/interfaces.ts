@@ -15,7 +15,9 @@ export interface IUserState {
     displayName: string | null,
     email: string | null,
     isLoggged: boolean,
+    userPhotoURL?: string | null,
     userCart?: IProductCart[]
+
 }
 
 
