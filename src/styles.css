@@ -1,6 +1,6 @@
 #root {
     font-family: 'Martian Mono', monospace;
-}
+} 
 
 .main-login-wrapper {
     background-image: url('images/board.png');
@@ -12,6 +12,13 @@
     -moz-background-size: cover;
     -o-background-size: cover;
 }
+
+/* Main container */
+
+.main{
+    min-width: 95%;
+}
+
 
 /* NAVBAR */
 .nav-link {
@@ -83,6 +90,10 @@
         width: 100px;
         height: 100px;
     }
+
+    .publicity-banner{
+        height: 15vh;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -93,5 +104,30 @@
 
     .email{
         font-size: smaller;
+    }
+}
+
+
+/* Banner */
+.publicity-banner{
+    width: 100vw;
+    height: 28vh;
+    background-color: #013d29b7;
+    margin:0 0 15px 0 ;
+}
+
+.opta-image{
+    width: 95%;
+} 
+
+@media screen and (max-width: 650px) {
+    .publicity-banner{
+        height: 20vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .publicity-banner{
+        height: 25vh;
     }
 }
