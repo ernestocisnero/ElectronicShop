@@ -24,7 +24,7 @@ export const UserAccount = (): JSX.Element => {
 
     return (
         <section className="d-flex justify-content-center">
-            <div className="user_account my-5">
+            <div className="user_account my-3">
                 <div className="background"></div>
 
                 <div className='profile-image-wrapper d-flex justify-content-between flex-wrap'>
@@ -67,7 +67,7 @@ export const UserAccount = (): JSX.Element => {
 
 
                     <h6 className='mt-3' style={{ color: "#013D29" }}>Password update</h6>
-                    <form className='my-3 border p-5'>
+                    <form className='border p-5'>
                         <div className="form-group">
                             <label htmlFor="formGroupExampleInput">Enter your current password</label>
                             <input type="text" className="form-control" id="formGroupExampleInput" placeholder=".........." />

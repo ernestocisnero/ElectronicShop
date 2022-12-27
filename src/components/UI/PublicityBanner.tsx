@@ -7,7 +7,7 @@ export const PublicityBanner = (): JSX.Element => {
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <h2 className="mt-5" style={{ color: "#fff" }}>Did you know about Opta the new PLC by Arduino ?</h2>
+                            <h2 className="mt-5" style={{ color: "#fff" }}>Do you know about Opta the new PLC by Arduino ?</h2>
                             <p className="mt-3" style={{ color: "#fff" }}>An industrial micro PLC with  IoT capabilities</p>
                         </div>
                         <div className="col">
@@ -21,7 +21,7 @@ export const PublicityBanner = (): JSX.Element => {
                 <div className="publicity-banner">
                     {/* Shows on small and smaller devices */}
                     <div className="container ">
-                        <h2 style={{ color: "#fff" }}>Did you know about Opta the new PLC by Arduino ?</h2>
+                        <h2 style={{ color: "#fff" }}>Do you know about Opta the new PLC by Arduino ?</h2>
                         <p className="mt-3" style={{ color: "#fff" }}>An industrial micro PLC with  IoT capabilities</p>
                     </div>
                 </div>
