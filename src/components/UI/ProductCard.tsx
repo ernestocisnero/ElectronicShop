@@ -16,7 +16,7 @@ export const ProductCard = ( { type, price, category, manufacturer }:PropType ):
 
     return (
         <div className="card m-2 rounded" style={{ width: "18rem" }}>
-            <img className="card-img-top p-2" src={`images/${type}.jpg`} alt={type} />
+            <img className="card-img-top p-2" src={`images/${type}.jpg`} height="250" alt={type} />
             <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center">
                     <h5 className="card-title" style={{ color: "#013D29" }}>{type}</h5>

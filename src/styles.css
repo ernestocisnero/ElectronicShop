@@ -1,6 +1,6 @@
 #root {
     font-family: 'Martian Mono', monospace;
-} 
+}
 
 .main-login-wrapper {
     background-image: url('images/board.png');
@@ -15,7 +15,7 @@
 
 /* Main container */
 
-.main{
+.main {
     min-width: 95%;
 }
 
@@ -58,7 +58,7 @@
     background: linear-gradient(251deg, rgba(34, 193, 195, 1) 0%, rgba(1, 61, 41, 1) 30%);
 }
 
-.profile-image{
+.profile-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -71,7 +71,7 @@
     overflow: hidden;
 }
 
-.user-profile-image{
+.user-profile-image {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -79,55 +79,65 @@
 
 
 @media screen and (max-width: 990px) {
-    .profile-image{
+    .profile-image {
         width: 120px;
         height: 120px;
     }
 }
 
 @media screen and (max-width: 650px) {
-    .profile-image{
+    .profile-image {
         width: 100px;
         height: 100px;
     }
 
-    .publicity-banner{
+    .publicity-banner {
         height: 15vh;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .profile-image{
+    .profile-image {
         width: 85px;
         height: 85px;
     }
 
-    .email{
+    .email {
         font-size: smaller;
     }
 }
 
 
 /* Banner */
-.publicity-banner{
+.publicity-banner {
     width: 100vw;
     height: 28vh;
     background-color: #013d29b7;
-    margin:0 0 15px 0 ;
+    margin: 0 0 15px 0;
 }
 
-.opta-image{
+.opta-image {
     width: 95%;
-} 
+}
 
 @media screen and (max-width: 650px) {
-    .publicity-banner{
+    .publicity-banner {
         height: 20vh;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .publicity-banner{
+    .publicity-banner {
         height: 25vh;
     }
+}
+
+/* Product List */
+
+.product-cards-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
