@@ -23,8 +23,7 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
             }
 
         case 'addToCart':
-            console.log('Add to cart action triggered');
-            // state.userCart = action.payload
+            state.userCart?.push(action.payload);
             return {
                 ...state,
             }

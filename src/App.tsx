@@ -6,20 +6,24 @@ import { AuthRouter } from './Router/AuthRouter';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/configFirebase';
 import { ShopRouter } from './Router/ShopRouter';
+import { readFirestoreDB } from './firebase/firestore/readFirestoreDB';
 
 function App() {
 
   const { userState, dispatch } = useContext(AppContext);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user): void => {
-            if (user) {
+        onAuthStateChanged(auth, async (user): Promise<void> => {
+          const cart_items = await readFirestoreDB(user?.uid);
 
+            if (user) {              
                 dispatch( { type: 'log_user', payload: {
                     isLoggged: true,
                     uid: user.uid,
                     displayName: user.displayName,
-                    email: user.email
+                    email: user.email,
+                    userPhotoURL: user.photoURL,
+                    userCart: cart_items
                 } } )
     
             } else {
@@ -27,7 +31,9 @@ function App() {
                     isLoggged: false,
                     uid: null,
                     displayName: null,
-                    email: null
+                    email: null,
+                    userPhotoURL: null, 
+                    userCart: null
                 } })
             }
         })

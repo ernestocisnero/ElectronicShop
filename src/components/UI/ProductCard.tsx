@@ -1,16 +1,26 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { AppContext } from "../../context/AppContext"
 
 type PropType = {
+    productID: string,
     type: string,
     price: number,
     manufacturer: string,
     category: string
 }
 
-export const ProductCard = ( { type, price, category, manufacturer }:PropType ): JSX.Element => {
+export const ProductCard = ( { productID, type, price, category, manufacturer }:PropType ): JSX.Element => {
 
-    const addToCart = ( event: React.MouseEvent<HTMLButtonElement> )=>{
+    const { userState, dispatch } = useContext( AppContext );
+
+    const addToCart = async ( event: React.MouseEvent<HTMLButtonElement> ) =>{
         event.preventDefault();
+        const cart_Item_Found = userState.userCart?.find( cart_Item => cart_Item.productID === productID );
+
+        if( cart_Item_Found ) return dispatch({ type: 'addToCart', payload: { productID, count: cart_Item_Found.count +1 }})
+
+        return dispatch({ type: 'addToCart', payload: { productID, count: 1 }})
     }
 
 

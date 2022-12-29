@@ -24,7 +24,13 @@ export const ProductList = () => {
             <div className='product-cards-list'>
                 {
                     query_docs.map(doc => {
-                        return <ProductCard key={doc.id} type={doc.data().type} category={doc.data().category} manufacturer={doc.data().manufacturer} price={doc.data().price} />
+                        return <ProductCard key={doc.id}
+                            productID={ doc.id }
+                            type={doc.data().type}
+                            category={doc.data().category}
+                            manufacturer={doc.data().manufacturer}
+                            price={doc.data().price}
+                        />
                     })
                 }
             </div>

@@ -4,7 +4,7 @@ import { firestoreCartDB } from '../configFirebase';
 
 
 
-export const writeFirestoreDB = async (user_uid: string, product: IProductCart): Promise<IProductCart> => { 
+export const writeFirestoreDB = async (user_uid: string | undefined, product: IProductCart): Promise<IProductCart> => { 
 
     const userCartREF = collection(firestoreCartDB, "user_carts");
 
@@ -13,10 +13,10 @@ export const writeFirestoreDB = async (user_uid: string, product: IProductCart):
             {
                 productID: product.productID,
                 count: product.count
-            }
+            },
         ]
         
     }
-    await setDoc(doc(userCartREF,`${user_uid}` ), userCart);//
+    await setDoc(doc(userCartREF,`${user_uid}` ), userCart);
     return product
 }

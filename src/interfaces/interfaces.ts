@@ -6,7 +6,7 @@ export interface IPropsProvider {
 
 export interface IProductCart {
     productID: string,
-    count: number | null,
+    count: number
 }
 
 
@@ -16,7 +16,7 @@ export interface IUserState {
     email: string | null,
     isLoggged: boolean,
     userPhotoURL?: string | null,
-    userCart?: IProductCart[]
+    userCart: IProductCart[] | null
 
 }
 
