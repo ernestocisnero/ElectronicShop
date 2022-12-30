@@ -1,6 +1,11 @@
-import { useContext } from "react"
+import { doc, onSnapshot } from 'firebase/firestore';
+import { useContext, useState } from 'react';
 import { Link } from "react-router-dom"
 import { AppContext } from "../../context/AppContext"
+import { firestoreCartDB } from '../../firebase/configFirebase';
+import { addToUserCartDB } from '../../firebase/firestore/addToUserCartDB';
+import { IProductCart } from '../../interfaces/interfaces';
+
 
 type PropType = {
     productID: string,
@@ -10,17 +15,20 @@ type PropType = {
     category: string
 }
 
-export const ProductCard = ( { productID, type, price, category, manufacturer }:PropType ): JSX.Element => {
+export const ProductCard = ({ productID, type, price, category, manufacturer }: PropType): JSX.Element => {
+    let cart: IProductCart[];
+    const { userState, dispatch } = useContext(AppContext);
 
-    const { userState, dispatch } = useContext( AppContext );
-
-    const addToCart = async ( event: React.MouseEvent<HTMLButtonElement> ) =>{
+    const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        const cart_Item_Found = userState.userCart?.find( cart_Item => cart_Item.productID === productID );
 
-        if( cart_Item_Found ) return dispatch({ type: 'addToCart', payload: { productID, count: cart_Item_Found.count +1 }})
+        await addToUserCartDB(userState.uid, productID);
 
-        return dispatch({ type: 'addToCart', payload: { productID, count: 1 }})
+        const unsub = onSnapshot(doc(firestoreCartDB, "user_carts", `${userState.uid}`), async (doc) => {
+            await dispatch({ type: "addToCart", payload: doc.data()?.cart_items })
+        });
+
+
     }
 
 
@@ -30,15 +38,15 @@ export const ProductCard = ( { productID, type, price, category, manufacturer }:
             <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center">
                     <h5 className="card-title" style={{ color: "#013D29" }}>{type}</h5>
-                    <h5>{ `$${price}` }</h5>
+                    <h5>{`$${price}`}</h5>
                 </div>
 
                 <div className="d-flex align-items-center mb-3">
-                    <p className="card-subtitle" style={{ color: "#013D29" }}>{ `${manufacturer}: ${category}` }</p>
+                    <p className="card-subtitle" style={{ color: "#013D29" }}>{`${manufacturer}: ${category}`}</p>
                 </div>
 
                 <div className="d-flex justify-content-between">
-                    <button className="btn btn-sm btn-primary rounded" style={{ backgroundColor: "#013D29" }} onClick={ addToCart }>Add to cart</button>
+                    <button className="btn btn-sm btn-primary rounded" style={{ backgroundColor: "#013D29" }} onClick={addToCart}>Add to cart</button>
                     <Link to="/payments" className="btn btn-sm btn-info rounded">Quick shop</Link>
                 </div>
             </div>

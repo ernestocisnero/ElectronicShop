@@ -1,10 +1,13 @@
 import { IProductCart, IUserState } from "../interfaces";
 
+
 export type ActionType =
     | { type: 'log_user', payload: IUserState }
     | { type: 'logOut_user', payload: IUserState }
-    | { type: 'addToCart', payload: IProductCart }
-    | { type: 'removeFromCart', payload: IProductCart }
+    | { type: 'addToCart', payload: IProductCart[] }
+    | { type: 'removeFromCart', payload: IProductCart[] }
+    | { type: 'increaseNumberOfProduct', payload: number }
+    | { type: 'decreaseNumberOfProduct', payload: number }
 
 
 export const appReducer = (state: IUserState, action: ActionType): IUserState => {
@@ -22,18 +25,6 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
                 ...state,
             }
 
-        case 'addToCart':
-            state.userCart?.push(action.payload);
-            return {
-                ...state,
-            }
-
-        case 'removeFromCart':
-            console.log('Remove from action triggered');
-            return {
-                ...state,
-            }
-        
         case 'logOut_user':
             state.displayName = action.payload.displayName;
             state.email = action.payload.email;
@@ -43,6 +34,30 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
             return {
                 ...state,
             }
+
+        case 'addToCart':
+            state.userCart = action.payload;
+            return {
+                ...state,
+            }
+
+        case 'removeFromCart':
+            console.log('Remove from action triggered');
+            return {
+                ...state,
+            }
+
+        case 'increaseNumberOfProduct':
+
+        return {
+            ...state
+        }
+
+        case 'decreaseNumberOfProduct':
+
+        return{
+            ...state
+        }
 
         default:
             return state;
