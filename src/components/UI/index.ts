@@ -4,3 +4,4 @@ export * from './ProductCard';
 export * from './PublicityBanner';
 export * from './ProgressBarPassword';
 export * from './ProductList';
+export * from './CartCard';
