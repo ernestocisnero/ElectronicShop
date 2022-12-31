@@ -46,3 +46,13 @@ export interface IFormLoginInput {
     email: string;
     password: string;
 }
+
+//Product
+
+export interface IProduct {
+    category: string,
+    description: string,
+    manufacturer: string,
+    price: number,
+    type: string
+}
