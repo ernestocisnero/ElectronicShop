@@ -141,3 +141,9 @@
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+
+
+.card-payment {
+    background: rgb(34, 193, 195);
+    background: linear-gradient(180deg, rgba(228, 231, 231, 0.575) 0%, rgba(136, 139, 138, 0.411) 100%);
+}
