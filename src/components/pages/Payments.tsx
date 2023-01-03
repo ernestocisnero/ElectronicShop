@@ -17,9 +17,13 @@ export const Payments = (): JSX.Element => {
           </div>
 
           <div className="d-flex flex-column text-danger m-3" style={{ opacity: 1 }}>
-            <p>Your Name</p>
-            <p>111111111111111111</p>
-            <p>11/02</p>
+            <p style={{ color: "#013D29" }}>Your Name</p>
+            <p style={{ color: "#013D29" }}>111111111111111111</p>
+            <div className="d-flex justify-content-around">
+              <p style={{ color: "#013D29" }}>11/02/25</p>
+              <p style={{ color: "#013D29" }}>123</p>
+            </div>
+
           </div>
         </div>
 
