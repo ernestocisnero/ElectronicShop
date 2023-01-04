@@ -25,6 +25,7 @@ export const createUserEmailPassword = async (email: string, password: string, n
                 uid: user.uid,
                 displayName: user.displayName,
                 email: user.email,
+                userPhotoURL: user.photoURL,
                 userCart: user_cart
             }
         } else {
@@ -32,7 +33,9 @@ export const createUserEmailPassword = async (email: string, password: string, n
                 isLoggged: false,
                 uid: null,
                 displayName: null,
-                email: null
+                email: null,
+                userPhotoURL: null,
+                userCart: null
             }
         }
     }
@@ -42,7 +45,9 @@ export const createUserEmailPassword = async (email: string, password: string, n
             isLoggged: false,
             uid: null,
             displayName: null,
-            email: null
+            email: null,
+            userPhotoURL: null,
+                userCart: null
         }
 
     }
@@ -62,6 +67,7 @@ export const logInUserEmailPassword = async (email: string, password: string): P
                 uid: user.uid,
                 displayName: user.displayName,
                 email: user.email,
+                userPhotoURL: user.photoURL,
                 userCart: user_cart
             }
         } else {
@@ -69,7 +75,9 @@ export const logInUserEmailPassword = async (email: string, password: string): P
                 isLoggged: false,
                 uid: null,
                 displayName: null,
-                email: null
+                email: null,
+                userPhotoURL: null,
+                userCart: null
             }
         }
 
@@ -78,7 +86,9 @@ export const logInUserEmailPassword = async (email: string, password: string): P
             isLoggged: false,
             uid: null,
             displayName: null,
-            email: null
+            email: null,
+            userPhotoURL: null,
+                userCart: null
         }
 
     }
@@ -106,7 +116,9 @@ export const googleSignIn = async (): Promise<IUserState> => {
                 isLoggged: false,
                 uid: null,
                 displayName: null,
-                email: null
+                email: null,
+                userPhotoURL: null,
+                userCart: null
             }
         }
     } catch (error) {
@@ -114,7 +126,9 @@ export const googleSignIn = async (): Promise<IUserState> => {
             isLoggged: false,
             uid: null,
             displayName: null,
-            email: null
+            email: null,
+            userPhotoURL: null,
+            userCart: null
         }
     }
 }
@@ -132,6 +146,7 @@ export const twitterSignIn = async (): Promise<IUserState> => {
                 uid: user.uid,
                 displayName: user.displayName,
                 email: user.email,
+                userPhotoURL: user.photoURL,
                 userCart: user_cart
             }
         } else {
@@ -139,7 +154,9 @@ export const twitterSignIn = async (): Promise<IUserState> => {
                 isLoggged: false,
                 uid: null,
                 displayName: null,
-                email: null
+                email: null,
+                userPhotoURL: null,
+                userCart: null
             }
         }
     } catch (error) {
@@ -148,7 +165,9 @@ export const twitterSignIn = async (): Promise<IUserState> => {
             isLoggged: false,
             uid: null,
             displayName: null,
-            email: null
+            email: null,
+            userPhotoURL: null,
+                userCart: null
         }
     }
 
@@ -164,6 +183,7 @@ export const signOutUser = async (): Promise<IUserState> =>{
             uid: null,
             displayName: null,
             email: null,
+            userPhotoURL: null,
             userCart: []
         }
         
@@ -175,6 +195,7 @@ export const signOutUser = async (): Promise<IUserState> =>{
             uid: null,
             displayName: null,
             email: null,
+            userPhotoURL: null,
             userCart: []
         }
     }
