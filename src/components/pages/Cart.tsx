@@ -16,21 +16,22 @@ export const Cart = (): JSX.Element => {
   useEffect(() => {
     const userProductList: DocumentData | undefined = [];
     let subtotal: number = 0;
+
     userState.userCart?.map(async (item) => {
       const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
       const productSnap = await getDoc(productREF);
       const productList = productSnap.data();
       userProductList.push(productList);
-
-      userProductList.map((product: IProduct) => {
-        subtotal = product.price + subtotal;
-      })
-
-
-      setSubtotal(subtotal);
       setUserProducts(userProductList)
     })
-  }, [])
+
+    userProducts?.map((product: IProduct) => {
+      subtotal = product.price + subtotal;
+    })
+
+    setSubtotal(subtotal);
+
+  }, [userState.userCart])
 
   return (
     <>
@@ -55,7 +56,7 @@ export const Cart = (): JSX.Element => {
         <div className="d-flex flex-column align-items-center">
 
           <div className="checkout-btn">
-          <CheckoutBtn />
+            <CheckoutBtn />
           </div>
 
           <div className="d-flex mb-2">
