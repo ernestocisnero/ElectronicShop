@@ -16,7 +16,7 @@ export const Cart = (): JSX.Element => {
   useEffect(() => {
     const userProductList: DocumentData | undefined = [];
     let subtotal: number = 0;
-
+    
     userState.userCart?.map(async (item) => {
       const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
       const productSnap = await getDoc(productREF);
@@ -28,10 +28,10 @@ export const Cart = (): JSX.Element => {
     userProducts?.map((product: IProduct) => {
       subtotal = product.price + subtotal;
     })
-
+  
     setSubtotal(subtotal);
 
-  }, [userState.userCart])
+  }, [])
 
   return (
     <>
