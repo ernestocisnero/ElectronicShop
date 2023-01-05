@@ -1,6 +1,5 @@
 import { doc, DocumentData, getDoc } from "firebase/firestore";
 import { useContext, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { firestoreCartDB } from "../../firebase/configFirebase";
 import { IProduct } from '../../interfaces/interfaces';
@@ -10,28 +9,30 @@ import { CartCard, CheckoutBtn } from "../UI";
 export const Cart = (): JSX.Element => {
 
   const { userState } = useContext(AppContext);
+
   const [userProducts, setUserProducts] = useState<DocumentData | undefined>()
-  const [subtotal, setSubtotal] = useState<number | null>(null)
+  const [subtotal, setSubtotal] = useState<number>(0)
 
   useEffect(() => {
     const userProductList: DocumentData | undefined = [];
-    let subtotal: number = 0;
+    let totalPrice: number = 0;
     
     userState.userCart?.map(async (item) => {
+
       const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
       const productSnap = await getDoc(productREF);
       const productList = productSnap.data();
+      
       userProductList.push(productList);
-      setUserProducts(userProductList)
+      
+      totalPrice += productList?.price;
+      
+      setUserProducts(userProductList);
+      setSubtotal( totalPrice );
     })
 
-    userProducts?.map((product: IProduct) => {
-      subtotal = product.price + subtotal;
-    })
-  
-    setSubtotal(subtotal);
-
-  }, [])
+    
+  },[])
 
   return (
     <>
