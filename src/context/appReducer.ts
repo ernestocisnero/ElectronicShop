@@ -6,8 +6,7 @@ export type ActionType =
     | { type: 'logOut_user', payload: IUserState }
     | { type: 'addToCart', payload: IProductCart[] }
     | { type: 'removeFromCart', payload: IProductCart[] }
-    | { type: 'increaseNumberOfProduct', payload: number }
-    | { type: 'decreaseNumberOfProduct', payload: number }
+    | { type: 'updateNumberOfProduct', payload:IProductCart[] }
 
 
 export const appReducer = (state: IUserState, action: ActionType): IUserState => {
@@ -42,23 +41,17 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
             }
 
         case 'removeFromCart':
-            console.log('Remove from action triggered');
             state.userCart = action.payload;
             return {
                 ...state,
             }
 
-        case 'increaseNumberOfProduct':
-
+        case 'updateNumberOfProduct':
+            state.userCart = action.payload;
         return {
             ...state
         }
 
-        case 'decreaseNumberOfProduct':
-
-        return{
-            ...state
-        }
 
         default:
             return state;

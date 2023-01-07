@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { AppContext } from "../../context/AppContext"
 import { firestoreCartDB } from "../../firebase/configFirebase"
 import { removeFromUserCartDB } from "../../firebase/firestore/removeFromUserCartDB"
+import { updateQtyCartDB } from "../../firebase/firestore/updateQtyCartDB"
 import { IProduct } from "../../interfaces"
 
 type PropType = {
@@ -21,12 +22,22 @@ export const CartCard = ({ productData }: PropType): JSX.Element => {
         });
     }
 
+    const handleSelectedOption =async (event: React.ChangeEvent<HTMLSelectElement>)=>{
+        event.preventDefault();
+        
+        //await updateQtyCartDB(productData.type, userState.uid, event.currentTarget.value);
+        
+        // const unsub = onSnapshot(doc(firestoreCartDB, "user_carts", `${userState.uid}`), async (doc) => {
+        //     await dispatch({ type: "updateNumberOfProduct", payload: doc.data()?.cart_items })
+        // });
+    }
+
     return (
         <div className="container">
 
             <div className="card my-3 products">
                 <div className="d-flex">
-                    <div className="product-image">
+                    <div className="product-image m-3">
                         <img src={`images/${productData.type}.jpg`} alt="product-image" width={100} />
                     </div>
 
@@ -40,7 +51,7 @@ export const CartCard = ({ productData }: PropType): JSX.Element => {
                         <div className="d-dlex flex-column m-3">
                             <div className="form-select">
                                 <label htmlFor="select-quantity">Quantity</label>
-                                <select className="form-select ml-1" aria-label="select-quantity" id="select-quantity">
+                                <select className="form-select ml-1" aria-label="select-quantity" id="select-quantity" onChange={ handleSelectedOption }>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -50,7 +61,7 @@ export const CartCard = ({ productData }: PropType): JSX.Element => {
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
-                                    <option value="+10">+10</option>
+                                    <option value="10">10</option>
                                 </select>
                             </div>
 

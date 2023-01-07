@@ -1,7 +1,7 @@
-import { collection, query, where, getDocs, doc, updateDoc, arrayRemove } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, arrayUnion, increment } from "firebase/firestore";
 import { firestoreCartDB } from "../configFirebase";
 
-export const removeFromUserCartDB = async (type: string, userID: string | null) => {
+export const updateQtyCartDB = async (type: string, userID: string | null, qty: string) => {
 
     const q = query(collection(firestoreCartDB, "shop-products"), where("type", "==", `${type}`));
     const querySnapshot = await getDocs(q);
@@ -11,8 +11,8 @@ export const removeFromUserCartDB = async (type: string, userID: string | null) 
         const productID = docUser.id;
         
         await updateDoc(userDocREF, {
-            cart_items: arrayRemove({productID ,
-                count: 1 })
+            cart_items: arrayUnion({productID ,
+                count: qty })
         });
     });
 }
