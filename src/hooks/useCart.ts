@@ -34,6 +34,6 @@ export const useCart = () => {
 
     return {
         userProducts,
-        subtotal
+        subtotal,
     }
 }
