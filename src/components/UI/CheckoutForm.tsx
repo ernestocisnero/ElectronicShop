@@ -1,5 +1,13 @@
 
-export const CheckoutForm = (): JSX.Element => {
+type PropType = {
+    setFirstName:Function
+    setLastName:Function
+    setCardNumber: Function
+    setExpDate: Function
+    setCVV: Function
+}
+export const CheckoutForm = ( { setFirstName, setLastName, setCardNumber, setExpDate, setCVV }: PropType ): JSX.Element => {
+    
     return (
         <form className="my-3">
             {/* Billing Address Form */}
@@ -7,11 +15,11 @@ export const CheckoutForm = (): JSX.Element => {
             <div className="d-flex justify-content-evenly flex-column flex-md-row mb-3">
                 <div className="mr-3">
                     <label htmlFor="exampleInputFirstName" className="form-label">First Name</label>
-                    <input type="text" className="form-control" id="exampleInputFirstName" />
+                    <input type="text" className="form-control" id="exampleInputFirstName" onChange={ (event)=> setFirstName( event.currentTarget.value ) }/>
                 </div>
                 <div className="mr-3">
                     <label htmlFor="exampleInputLastName" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="exampleInputLastName" />
+                    <input type="text" className="form-control" id="exampleInputLastName" onChange={ (event)=> setLastName(event.currentTarget.value) }/>
                 </div>
             </div>
 
@@ -80,18 +88,18 @@ export const CheckoutForm = (): JSX.Element => {
                 </div>
                 <div className="mr-3">
                     <label htmlFor="exampleInputNumberOnCard" className="form-label">Card number</label>
-                    <input type="text" className="form-control" id="exampleInputNumberOnCard" />
+                    <input type="text" className="form-control" id="exampleInputNumberOnCard" onChange={ (event)=> setCardNumber(event.currentTarget.value) }/>
                 </div>
             </div>
 
             <div className="d-flex justify-content-evenly flex-column flex-md-row mb-3">
                 <div className="mr-3 input-group-sm">
                     <label htmlFor="exampleInputExpiration" className="form-label">Expiration date</label>
-                    <input type="date" className="form-control" id="exampleInputExpiration" />
+                    <input type="date" className="form-control" id="exampleInputExpiration" onChange={ (event)=> setExpDate(event.currentTarget.value) }/>
                 </div>
                 <div className="mr-3 input-group-sm">
                     <label htmlFor="exampleInputCVV" className="form-label">CVV</label>
-                    <input type="number" className="form-control" id="exampleInputCVV" />
+                    <input type="number" className="form-control" id="exampleInputCVV" onChange={ (event) => setCVV(event.currentTarget.value) }/>
                 </div>
             </div>
         </form>

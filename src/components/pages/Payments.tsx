@@ -1,11 +1,18 @@
 import { CheckoutForm } from "../UI"
+import { useState } from 'react';
 
 
 export const Payments = (): JSX.Element => {
+  const [firstName, setFirstName] = useState('Your');
+  const [lastName, setLastName] = useState('Name');
+  const [cardNumber, setCardNumber] = useState('xxxx xxxx xxxx xxxx');
+  const [expDate, setExpDate] = useState('Jan/01');
+  const [cvv, setCVV] = useState('...');
+  
   return (
     <div className="container d-flex flex-column flex-md-row justify-content-between my-2">
       <div className="personal-data">
-        <CheckoutForm />
+        <CheckoutForm setFirstName={ setFirstName } setLastName={ setLastName } setCardNumber={ setCardNumber } setExpDate={ setExpDate } setCVV ={ setCVV }/>
       </div>
 
       <div className="card-data my-2">
@@ -17,11 +24,11 @@ export const Payments = (): JSX.Element => {
           </div>
 
           <div className="d-flex flex-column text-danger m-3" style={{ opacity: 1 }}>
-            <p style={{ color: "#013D29" }}>Your Name</p>
-            <p style={{ color: "#013D29" }}>111111111111111111</p>
+            <p style={{ color: "#013D29" }}>{firstName} {lastName}</p>
+            <p style={{ color: "#013D29" }}>{cardNumber}</p>
             <div className="d-flex justify-content-around">
-              <p style={{ color: "#013D29" }}>11/02/25</p>
-              <p style={{ color: "#013D29" }}>123</p>
+              <p style={{ color: "#013D29" }}>{expDate}</p>
+              <p style={{ color: "#013D29" }}>{cvv}</p>
             </div>
 
           </div>
