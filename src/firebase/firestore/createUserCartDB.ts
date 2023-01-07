@@ -1,5 +1,4 @@
 import { collection, doc, setDoc } from "firebase/firestore";
-import { IProductCart } from "../../interfaces";
 import { firestoreCartDB } from "../configFirebase";
 
 export const createUserCartDB = async ( user_uid: string | null )=>{

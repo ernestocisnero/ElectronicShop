@@ -1,9 +1,26 @@
+import { doc, onSnapshot } from "firebase/firestore"
+import { useContext } from "react"
+import { AppContext } from "../../context/AppContext"
+import { firestoreCartDB } from "../../firebase/configFirebase"
+import { removeFromUserCartDB } from "../../firebase/firestore/removeFromUserCartDB"
 import { IProduct } from "../../interfaces"
 
 type PropType = {
     productData: IProduct
 }
 export const CartCard = ({ productData }: PropType): JSX.Element => {
+
+    const { userState, dispatch } = useContext(AppContext);
+
+    const handleDeleteBtn = async ( event: React.MouseEvent<HTMLButtonElement>)=>{
+        event.preventDefault();
+        await removeFromUserCartDB(productData.type, userState.uid);
+        
+        const unsub = onSnapshot(doc(firestoreCartDB, "user_carts", `${userState.uid}`), async (doc) => {
+            await dispatch({ type: "removeFromCart", payload: doc.data()?.cart_items })
+        });
+    }
+
     return (
         <div className="container">
 
@@ -37,7 +54,7 @@ export const CartCard = ({ productData }: PropType): JSX.Element => {
                                 </select>
                             </div>
 
-                            <button className="btn btn-sm rounded btn-danger my-1" >Delete</button>
+                            <button className="btn btn-sm rounded btn-danger my-1" onClick={ handleDeleteBtn }>Delete</button>
                         </div>
                     </div>
                 </div>

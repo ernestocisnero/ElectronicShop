@@ -43,6 +43,7 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
 
         case 'removeFromCart':
             console.log('Remove from action triggered');
+            state.userCart = action.payload;
             return {
                 ...state,
             }

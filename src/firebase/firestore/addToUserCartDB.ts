@@ -1,4 +1,4 @@
-import { arrayRemove, arrayUnion, doc, updateDoc, where } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firestoreCartDB } from '../configFirebase';
 
 

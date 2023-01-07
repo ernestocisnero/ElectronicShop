@@ -32,7 +32,7 @@ export const Cart = (): JSX.Element => {
     })
 
     
-  },[])
+  },[userState.userCart])
 
   return (
     <>
