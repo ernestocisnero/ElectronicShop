@@ -1,5 +1,6 @@
 import { CheckoutForm } from "../UI"
 import { useState } from 'react';
+import { useCart } from "../../hooks";
 
 
 export const Payments = (): JSX.Element => {
@@ -8,6 +9,8 @@ export const Payments = (): JSX.Element => {
   const [cardNumber, setCardNumber] = useState('xxxx xxxx xxxx xxxx');
   const [expDate, setExpDate] = useState('Jan/01');
   const [cvv, setCVV] = useState('...');
+
+  const { subtotal } = useCart();
   
   return (
     <div className="container d-flex flex-column flex-md-row justify-content-between my-2">
@@ -34,7 +37,7 @@ export const Payments = (): JSX.Element => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-block my-3 rounded" style={{ backgroundColor: "#013D29", color: "#fff" }}>Pay</button>
+        <button type="submit" className="btn btn-block my-3 rounded" style={{ backgroundColor: "#013D29", color: "#fff" }}>Pay ${subtotal}</button>
 
       </div>
     </div>

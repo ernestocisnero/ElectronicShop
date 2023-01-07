@@ -4,35 +4,37 @@ import { AppContext } from "../../context/AppContext";
 import { firestoreCartDB } from "../../firebase/configFirebase";
 import { IProduct } from '../../interfaces/interfaces';
 import { CartCard, CheckoutBtn } from "../UI";
+import { useCart } from '../../hooks/useCart';
 
 
 export const Cart = (): JSX.Element => {
 
-  const { userState } = useContext(AppContext);
+  const { subtotal, userProducts } = useCart();
+  // const { userState } = useContext(AppContext);
 
-  const [userProducts, setUserProducts] = useState<DocumentData | undefined>()
-  const [subtotal, setSubtotal] = useState<number>(0)
+  // const [userProducts, setUserProducts] = useState<DocumentData | undefined>()
+  // const [subtotal, setSubtotal] = useState<number>(0)
 
-  useEffect(() => {
-    const userProductList: DocumentData | undefined = [];
-    let totalPrice: number = 0;
+  // useEffect(() => {
+  //   const userProductList: DocumentData | undefined = [];
+  //   let totalPrice: number = 0;
     
-    userState.userCart?.map(async (item) => {
+  //   userState.userCart?.map(async (item) => {
 
-      const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
-      const productSnap = await getDoc(productREF);
-      const productList = productSnap.data();
+  //     const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
+  //     const productSnap = await getDoc(productREF);
+  //     const productList = productSnap.data();
       
-      userProductList.push(productList);
+  //     userProductList.push(productList);
       
-      totalPrice += productList?.price;
+  //     totalPrice += productList?.price;
       
-      setUserProducts(userProductList);
-      setSubtotal( totalPrice );
-    })
+  //     setUserProducts(userProductList);
+  //     setSubtotal( totalPrice );
+  //   })
 
     
-  },[userState.userCart])
+  // },[userState.userCart])
 
   return (
     <>

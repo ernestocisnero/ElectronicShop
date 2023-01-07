@@ -27,10 +27,7 @@ export const ProductCard = ({ productID, type, price, category, manufacturer }: 
         const unsub = onSnapshot(doc(firestoreCartDB, "user_carts", `${userState.uid}`), async (doc) => {
             await dispatch({ type: "addToCart", payload: doc.data()?.cart_items })
         });
-
-
     }
-
 
     return (
         <div className="card m-2 rounded" style={{ width: "18rem" }}>

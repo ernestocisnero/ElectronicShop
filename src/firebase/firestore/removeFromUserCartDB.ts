@@ -11,8 +11,10 @@ export const removeFromUserCartDB = async (type: string, userID: string | null) 
         const productID = docUser.id;
         
         await updateDoc(userDocREF, {
-            cart_items: arrayRemove({productID ,
-                count: 1 })
+            cart_items: arrayRemove({
+                productID,
+                count: 1 
+            })
         });
     });
 }

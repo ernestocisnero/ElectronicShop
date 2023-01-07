@@ -51,7 +51,7 @@ export const CheckoutForm = ( { setFirstName, setLastName, setCardNumber, setExp
                     <label htmlFor="exampleInputState" className="form-label">State</label>
                     <select className="form-control" id="exampleInputState">
                         <option value="United States">Florida</option>
-                        <option value="United States" selected>Choose...</option>
+                        <option value="United States">Choose...</option>
                     </select>
                 </div>
                 <div className="mb-3">
