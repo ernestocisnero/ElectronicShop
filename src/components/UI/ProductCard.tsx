@@ -1,10 +1,11 @@
 import { doc, onSnapshot } from 'firebase/firestore';
 import { useContext, useState } from 'react';
-import { Link } from "react-router-dom"
+
 import { AppContext } from "../../context/AppContext"
 import { firestoreCartDB } from '../../firebase/configFirebase';
 import { addToUserCartDB } from '../../firebase/firestore/addToUserCartDB';
-import { IProductCart } from '../../interfaces/interfaces';
+import { QuickShopModal } from './QuickShopModal';
+
 
 
 type PropType = {
@@ -16,7 +17,7 @@ type PropType = {
 }
 
 export const ProductCard = ({ productID, type, price, category, manufacturer }: PropType): JSX.Element => {
-    let cart: IProductCart[];
+
     const { userState, dispatch } = useContext(AppContext);
 
     const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -44,7 +45,7 @@ export const ProductCard = ({ productID, type, price, category, manufacturer }: 
 
                 <div className="d-flex justify-content-between">
                     <button className="btn btn-sm btn-primary rounded" style={{ backgroundColor: "#013D29" }} onClick={addToCart}>Add to cart</button>
-                    <Link to="/payments" className="btn btn-sm btn-info rounded">Quick shop</Link>
+                    <QuickShopModal price={price} manufacturer={ manufacturer } type={type}/>
                 </div>
             </div>
         </div>

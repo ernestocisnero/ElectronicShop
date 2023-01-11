@@ -7,3 +7,4 @@ export * from './ProductList';
 export * from './CartCard';
 export * from './CheckoutBtn';
 export * from './CheckoutForm';
+export * from './QuickShopModal';

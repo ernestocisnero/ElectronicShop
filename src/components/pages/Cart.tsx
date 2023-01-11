@@ -10,32 +10,7 @@ import { useCart } from '../../hooks/useCart';
 export const Cart = (): JSX.Element => {
 
   const { subtotal, userProducts } = useCart();
-  // const { userState } = useContext(AppContext);
-
-  // const [userProducts, setUserProducts] = useState<DocumentData | undefined>()
-  // const [subtotal, setSubtotal] = useState<number>(0)
-
-  // useEffect(() => {
-  //   const userProductList: DocumentData | undefined = [];
-  //   let totalPrice: number = 0;
-    
-  //   userState.userCart?.map(async (item) => {
-
-  //     const productREF = doc(firestoreCartDB, 'shop-products', `${item.productID}`);
-  //     const productSnap = await getDoc(productREF);
-  //     const productList = productSnap.data();
-      
-  //     userProductList.push(productList);
-      
-  //     totalPrice += productList?.price;
-      
-  //     setUserProducts(userProductList);
-  //     setSubtotal( totalPrice );
-  //   })
-
-    
-  // },[userState.userCart])
-
+  
   return (
     <>
       <div className="container my-5 d-flex justify-content-between">

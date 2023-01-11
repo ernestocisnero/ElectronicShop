@@ -24,12 +24,8 @@ export const CartCard = ({ productData }: PropType): JSX.Element => {
 
     const handleSelectedOption =async (event: React.ChangeEvent<HTMLSelectElement>)=>{
         event.preventDefault();
+        console.log(event.currentTarget.value);
         
-        //await updateQtyCartDB(productData.type, userState.uid, event.currentTarget.value);
-        
-        // const unsub = onSnapshot(doc(firestoreCartDB, "user_carts", `${userState.uid}`), async (doc) => {
-        //     await dispatch({ type: "updateNumberOfProduct", payload: doc.data()?.cart_items })
-        // });
     }
 
     return (
