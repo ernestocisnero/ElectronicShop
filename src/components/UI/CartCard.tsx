@@ -3,7 +3,6 @@ import { useContext } from "react"
 import { AppContext } from "../../context/AppContext"
 import { firestoreCartDB } from "../../firebase/configFirebase"
 import { removeFromUserCartDB } from "../../firebase/firestore/removeFromUserCartDB"
-import { updateQtyCartDB } from "../../firebase/firestore/updateQtyCartDB"
 import { IProduct } from "../../interfaces"
 
 type PropType = {

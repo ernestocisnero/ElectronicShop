@@ -1,21 +1,24 @@
+import { useState, useEffect } from 'react';
 
 type PropType = {
     type: string,
     price: number,
     manufacturer: string,
 }
-export const QuickShopModal = ({ price,manufacturer,type }: PropType) => {
+export const QuickShopModal = ({ price, manufacturer, type }: PropType) => {
+
+    
     return (
         <>
-            <button type="button" className="btn rounded btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+            <button type="button" className="btn rounded btn-info" data-bs-toggle="modal" data-bs-target={`#exampleModalCenter${type}`}>
                 Quick shop
             </button>
 
-            <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id={`exampleModalCenter${type}`} tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 className="modal-title" id="exampleModalLongTitle">Checkout</h5>
                             <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

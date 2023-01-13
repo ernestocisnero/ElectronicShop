@@ -1,5 +1,5 @@
 import { doc, onSnapshot } from 'firebase/firestore';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import { AppContext } from "../../context/AppContext"
 import { firestoreCartDB } from '../../firebase/configFirebase';
