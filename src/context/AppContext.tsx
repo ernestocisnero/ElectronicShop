@@ -4,7 +4,7 @@ import { ActionType } from "./appReducer";
 
 type UserContext = {
     userState: IUserState,
-    dispatch: React.Dispatch<ActionType>
+    dispatch: React.Dispatch<ActionType>,
 }
 
 export const AppContext = createContext<UserContext>({} as UserContext);

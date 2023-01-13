@@ -17,6 +17,7 @@ export interface IUserState {
     isLoggged: boolean,
     userPhotoURL?: string | null,
     userCart: IProductCart[] | null
+    filter?: string
 
 }
 

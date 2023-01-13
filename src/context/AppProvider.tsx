@@ -8,7 +8,8 @@ const INITIAL_STATE: IUserState = {
     displayName: null,
     email: null,
     isLoggged: false,
-    userCart: []
+    userCart: [],
+    filter: 'None'
 }
 
 

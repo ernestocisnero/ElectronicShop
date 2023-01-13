@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 
 type PropType = {
     type: string,
@@ -35,7 +34,7 @@ export const QuickShopModal = ({ price, manufacturer, type }: PropType) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-sm btn-danger rounded" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-sm rounded" data-bs-dismiss="modal" style={{ backgroundColor: "#013D29", color: "#fff" }}>Pay</button>
+                            <button type="button" className="btn btn-sm rounded" data-bs-dismiss="modal" style={{ backgroundColor: "#013D29", color: "#fff" }}>Pay</button> 
                         </div>
                     </div>
                 </div>

@@ -11,15 +11,24 @@ const links_pages = {
 
 export const Navbar = (): JSX.Element => {
 
-    const { userState } = useContext(AppContext);
+    const { userState, dispatch } = useContext(AppContext);
+
+    const handleFilter = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
+        await dispatch( {type:'filterByProduct', payload:event.currentTarget.textContent?.slice(0, -1) } )
+    }
+
+    const setDefaultFilter = async ()=>{
+        await dispatch( {type:'filterByProduct', payload: 'None' } );
+    }
 
     return (
         <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 <div className="navbar-brand"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
                     <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0h-13Zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5ZM12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0ZM1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1ZM1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25Z" />
-                </svg> 
-                <Link className="ml-3 text-decoration-none" to={"/"}>MyHardware</Link>
+                </svg>
+                    <Link className="ml-3 text-decoration-none" to={"/"} onClick={ setDefaultFilter }>MyHardware</Link>
                 </div>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -30,9 +39,9 @@ export const Navbar = (): JSX.Element => {
                         <li className="nav-item dropdown">
                             <div className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products</div>
                             <div className="dropdown-menu">
-                                <Link className="dropdown-item" to={""}>PLCs</Link>
-                                <Link className="dropdown-item" to={""}>Arduinos</Link>
-                                <Link className="dropdown-item" to={""}>Sensors</Link>
+                                <Link className="dropdown-item" to={""} onClick={handleFilter}>PLCs</Link>
+                                <Link className="dropdown-item" to={""} onClick={handleFilter}>Development Boards</Link>
+                                <Link className="dropdown-item" to={""} onClick={handleFilter}>Sensors</Link>
                             </div>
                         </li>
                         <li className="nav-item">

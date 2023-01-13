@@ -7,6 +7,7 @@ export type ActionType =
     | { type: 'addToCart', payload: IProductCart[] }
     | { type: 'removeFromCart', payload: IProductCart[] }
     | { type: 'updateNumberOfProduct', payload:IProductCart[] }
+    | { type: 'filterByProduct', payload:string | undefined }
 
 
 export const appReducer = (state: IUserState, action: ActionType): IUserState => {
@@ -48,6 +49,12 @@ export const appReducer = (state: IUserState, action: ActionType): IUserState =>
 
         case 'updateNumberOfProduct':
             state.userCart = action.payload;
+        return {
+            ...state
+        }
+
+        case 'filterByProduct':
+            state.filter = action.payload;
         return {
             ...state
         }
